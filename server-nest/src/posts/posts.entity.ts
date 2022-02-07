@@ -5,30 +5,30 @@ export class Post extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column('string')
+  @Column()
   title: string
 
-  @Column('string')
+  @Column()
   sports: string
 
-  @Column('string')
+  @Column()
   division: string
 
-  @Column('text')
+  @Column()
   content: string
 
-  @Column('date')
+  @Column()
   startTime: string
 
-  @Column('date')
+  @Column()
   endTime: string
 
-  @Column('string')
+  @Column()
   status: string
 
-  @Column('boolean')
+  @Column()
   phoneOpen: boolean
 
-  @Column('string')
+  @Column()
   addressName: string
 }

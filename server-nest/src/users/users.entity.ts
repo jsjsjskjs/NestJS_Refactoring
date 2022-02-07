@@ -1,7 +1,7 @@
 import { BaseEntity ,Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
 
 @Entity()
-@Unique(['nickname'])
+@Unique(['nickname', 'email'])
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
