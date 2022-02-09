@@ -16,23 +16,26 @@ export class UsersService {
     return this.userRepository.createUser(signupDto)
   }
 
-  async signin(userData): Promise<{ userData: object, accessToken: string }> {
-    const {
-      id,
-      email,
-      nickname,
-      password,
-      userPhone,
-      homeground,
-      favoriteSports
-    } = userData
+  async signin(userData): Promise<{ userData: object; accessToken: string }> {
+    const { email, password } = userData
     const user = await this.userRepository.findOne({ email })
+    const { id, nickname, userPhone, homeground, favoriteSports } = user
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload = { email }
       const accessToken = await this.jwtService.sign(payload)
 
-      return { userData: {id, email, nickname, userPhone, homeground, favoriteSports}, accessToken: accessToken }
+      return {
+        userData: {
+          id,
+          email,
+          nickname,
+          userPhone,
+          homeground,
+          favoriteSports
+        },
+        accessToken: accessToken
+      }
     } else {
       throw new UnauthorizedException('로그인 실패')
     }
